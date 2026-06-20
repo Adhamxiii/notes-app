@@ -11,7 +11,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,16 +23,13 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { signInUser } from "@/server/users";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.email(),
-  password: z.string().min(8),
 });
 
 export function ForgotPasswordForm({
@@ -42,29 +38,21 @@ export function ForgotPasswordForm({
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-      const response = await signInUser(values.email, values.password);
-      if (response.success) {
-        toast.success(response.message);
-        form.reset();
-        router.push("/dashboard");
-      } else {
-        toast.error(response.message);
-      }
+      toast.success(`If an account exists for ${values.email}, a reset link has been sent.`);
+      form.reset();
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -98,34 +86,18 @@ export function ForgotPasswordForm({
                     )}
                   />
                 </div>
-                <div className="grid gap-3">
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="flex justify-between items-center">
-                          <FormLabel>Password</FormLabel>
-                          <Link
-                            href="#"
-                            className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                          >
-                            Forgot your password?
-                          </Link>
-                        </div>
-                        <FormControl>
-                          <Input {...field} type="password" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <Loader2 className="animate-spin" />
+                  ) : (
+                    "Send reset link"
+                  )}
+                </Button>
               </div>
               <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <Link href="/signup" className="underline underline-offset-4">
-                  Sign up
+                Remember your password?{" "}
+                <Link href="/login" className="underline underline-offset-4">
+                  Sign in
                 </Link>
               </div>
             </form>

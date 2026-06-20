@@ -28,7 +28,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -47,7 +46,6 @@ export function SignupForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -46,7 +46,7 @@ const UserVerificationEmail = ({
                 Hi there,
               </Text>
               <Text className="text-[16px] text-gray-700 mb-[24px] m-0">
-                Thanks for signing up! To complete your account setup and ensure
+                Thanks for signing up with <strong>{userEmail}</strong>! To complete your account setup and ensure
                 you receive important updates, please verify your email address
                 by clicking the button below.
               </Text>
@@ -62,7 +62,7 @@ const UserVerificationEmail = ({
               </Section>
 
               <Text className="text-[14px] text-gray-600 mb-[24px] m-0">
-                If the button above doesn't work, you can copy and paste this
+                If the button above doesn&apos;t work, you can copy and paste this
                 link into your browser:
               </Text>
               <Text className="text-[14px] text-blue-600 break-all mb-[24px] m-0">
@@ -78,7 +78,7 @@ const UserVerificationEmail = ({
                   • This verification link will expire in 24 hours
                 </Text>
                 <Text className="text-[14px] text-gray-700 m-0 mb-[8px]">
-                  • If you didn't create an account, you can safely ignore this
+                  • If you didn&apos;t create an account, you can safely ignore this
                   email
                 </Text>
                 <Text className="text-[14px] text-gray-700 m-0">

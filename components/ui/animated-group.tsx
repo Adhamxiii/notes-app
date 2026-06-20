@@ -23,8 +23,8 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
-  as?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>;
-  asChild?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>;
+  as?: keyof React.JSX.IntrinsicElements | React.ComponentType<Record<string, unknown>>;
+  asChild?: keyof React.JSX.IntrinsicElements | React.ComponentType<Record<string, unknown>>;
 };
 
 const defaultContainerVariants: Variants = {
@@ -100,6 +100,17 @@ const addDefaultVariants = (variants: Variants) => ({
   visible: { ...defaultItemVariants.visible, ...variants.visible },
 });
 
+type MotionComponentType = typeof motion.div;
+
+function resolveMotionComponent(
+  component: NonNullable<AnimatedGroupProps['as']> = 'div'
+): MotionComponentType {
+  if (typeof component === 'string') {
+    return motion[component as keyof typeof motion] as MotionComponentType;
+  }
+  return motion.create(component) as MotionComponentType;
+}
+
 function AnimatedGroup({
   children,
   className,
@@ -116,11 +127,11 @@ function AnimatedGroup({
   const itemVariants = variants?.item || selectedVariants.item;
 
   const MotionComponent = React.useMemo(
-    () => (typeof as === 'string' ? (motion as any)[as] : motion.create(as)),
+    () => resolveMotionComponent(as),
     [as]
   );
   const MotionChild = React.useMemo(
-    () => (typeof asChild === 'string' ? (motion as any)[asChild] : motion.create(asChild)),
+    () => resolveMotionComponent(asChild),
     [asChild]
   );
 

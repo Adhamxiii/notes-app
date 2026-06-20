@@ -1,33 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 
-const links = [
-  {
-    title: "Features",
-    href: "#",
-  },
-  {
-    title: "Solution",
-    href: "#",
-  },
-  {
-    title: "Customers",
-    href: "#",
-  },
-  {
-    title: "Pricing",
-    href: "#",
-  },
-  {
-    title: "Help",
-    href: "#",
-  },
-  {
-    title: "About",
-    href: "#",
-  },
-];
-
 export default function FooterSection() {
   return (
     <footer className="py-16 md:py-32">

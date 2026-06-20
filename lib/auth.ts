@@ -9,7 +9,7 @@ import PasswordResetEmail from "@/components/emails/ResetEmail";
 
 export const auth = betterAuth({
   emailVerification: {
-    sendVerificationEmail: async ({ user, url, token }, request) => {
+    sendVerificationEmail: async ({ user, url }) => {
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: "Adham <adham@adham.com>",
@@ -25,7 +25,7 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
-    sendResetPassword: async ({ user, url, token }, request) => {
+    sendResetPassword: async ({ user, url }) => {
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: "Adham <adham@adham.com>",

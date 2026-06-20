@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 
 export const Logo = ({
   className,
-  uniColor,
 }: {
   className?: string;
   uniColor?: boolean;

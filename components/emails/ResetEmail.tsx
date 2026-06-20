@@ -18,7 +18,11 @@ interface PasswordResetEmailProps {
   requestTime: string;
 }
 
-const PasswordResetEmail = ({userEmail, resetUrl, requestTime}: PasswordResetEmailProps) => {
+const PasswordResetEmail = ({
+  userEmail,
+  resetUrl,
+  requestTime,
+}: PasswordResetEmailProps) => {
 
   return (
     <Html lang="en" dir="ltr">
@@ -57,7 +61,7 @@ const PasswordResetEmail = ({userEmail, resetUrl, requestTime}: PasswordResetEma
               </Section>
 
               <Text className="text-[14px] text-gray-600 mb-[24px] m-0">
-                If the button above doesn't work, copy and paste this link into your browser:
+                If the button above doesn&apos;t work, copy and paste this link into your browser:
               </Text>
               <Text className="text-[14px] text-blue-600 break-all mb-[32px] m-0">
                 {resetUrl}
@@ -69,10 +73,10 @@ const PasswordResetEmail = ({userEmail, resetUrl, requestTime}: PasswordResetEma
                   ⚠️ Important Security Information
                 </Heading>
                 <Text className="text-[14px] text-red-700 m-0 mb-[8px]">
-                  • This password reset link expires in 1 hour for your security
+                  • This password reset link expires in 1 hour for your security (requested at {requestTime})
                 </Text>
                 <Text className="text-[14px] text-red-700 m-0 mb-[8px]">
-                  • If you didn't request this reset, please ignore this email
+                  • If you didn&apos;t request this reset, please ignore this email
                 </Text>
                 <Text className="text-[14px] text-red-700 m-0 mb-[8px]">
                   • Never share this reset link with anyone
@@ -85,13 +89,13 @@ const PasswordResetEmail = ({userEmail, resetUrl, requestTime}: PasswordResetEma
               {/* Alternative Action */}
               <Section className="bg-gray-50 rounded-[8px] p-[24px] mb-[24px]">
                 <Heading className="text-[16px] font-semibold text-gray-900 m-0 mb-[12px]">
-                  Didn't request this reset?
+                  Didn&apos;t request this reset?
                 </Heading>
                 <Text className="text-[14px] text-gray-700 m-0 mb-[12px]">
-                  If you didn't request a password reset, your account is still secure. You can safely ignore this email, and your password will remain unchanged.
+                  If you didn&apos;t request a password reset, your account is still secure. You can safely ignore this email, and your password will remain unchanged.
                 </Text>
                 <Text className="text-[14px] text-gray-700 m-0">
-                  However, if you're concerned about unauthorized access, please contact our support team immediately.
+                  However, if you&apos;re concerned about unauthorized access, please contact our support team immediately.
                 </Text>
               </Section>
 
